@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link, Outlet } from 'react-router-dom';
 import { fetchMovie } from 'components/api';
 import { useEffect, useState } from 'react';
 
@@ -34,8 +34,21 @@ const MoviePage = () => {
           <p>{movie.overview}</p>
           <h3>Genres</h3>
           <ul>{genres}</ul>
+          <h3>Additional information</h3>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '10px',
+              marginBottom: '15px',
+            }}
+          >
+            <Link to="cast">Cast</Link>
+            <Link to="reviews">Reviews</Link>
+          </div>
         </>
       )}
+      <Outlet />
     </>
   );
 };

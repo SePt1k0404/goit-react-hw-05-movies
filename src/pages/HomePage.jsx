@@ -21,7 +21,7 @@ const HomePage = () => {
   return (
     <>
       <h1>Trending today</h1>
-      <ListOfPopularFilms popularFilms={popularFilms} />
+      <ListOfPopularFilms popular={true} popularFilms={popularFilms} />
     </>
   );
 };

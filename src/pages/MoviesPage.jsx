@@ -16,8 +16,10 @@ const MoviesPage = () => {
         if (searchQuery) {
           setQuery(searchQuery);
         }
-        const searchMovieApi = await fetchSearchMovie(query);
-        setSearchMovie(searchMovieApi);
+        if (query !== '') {
+          const searchMovieApi = await fetchSearchMovie(query);
+          setSearchMovie(searchMovieApi);
+        }
       } catch (error) {
         console.log(error);
       }

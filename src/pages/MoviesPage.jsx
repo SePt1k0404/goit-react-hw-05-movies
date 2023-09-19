@@ -1,13 +1,14 @@
 import { fetchSearchMovie } from 'components/api';
 import ListOfPopularFilms from 'components/ListOfPopularFilms/ListOfPopularFilms';
 import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 const MoviesPage = () => {
   const [query, setQuery] = useState('');
   const [searchMovie, setSearchMovie] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('query');
+  const location = useLocation();
 
   useEffect(() => {
     const getApiInfo = async () => {
@@ -33,7 +34,6 @@ const MoviesPage = () => {
   const handleChange = evt => {
     setSearchParams({ query: evt.target.value });
   };
-
   return (
     <>
       <form action="" onSubmit={handleSubmit}>
@@ -42,6 +42,7 @@ const MoviesPage = () => {
       </form>
       {searchMovie?.results.length > 0 ? (
         <ListOfPopularFilms
+          location={location}
           popular={false}
           popularFilms={searchMovie?.results}
         />

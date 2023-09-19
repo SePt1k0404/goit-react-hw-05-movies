@@ -1,11 +1,12 @@
 import React from 'react';
-import { useParams, Link, Outlet } from 'react-router-dom';
+import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { fetchMovie } from 'components/api';
 import { useEffect, useState } from 'react';
 
 const MoviePage = () => {
   const [movie, setMovie] = useState(null);
   const movieId = useParams();
+  const location = useLocation();
   useEffect(() => {
     const getApiInfo = async () => {
       try {
@@ -23,6 +24,7 @@ const MoviePage = () => {
     <>
       {movie && (
         <>
+          <Link to={location.state?.from ?? '/movies'}>Go back</Link>
           <img
             style={{ width: '200px' }}
             src={`https://image.tmdb.org/t/p/original${movie?.poster_path}`}

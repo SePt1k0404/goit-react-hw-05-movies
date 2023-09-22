@@ -20,7 +20,7 @@ const Cast = () => {
   const castArr = cast?.cast?.map(el => (
     <li key={el.cast_id}>
       <img
-        style={{ width: '200px' }}
+        style={{ width: '240px', height: '310px' }}
         src={
           el?.profile_path
             ? `https://image.tmdb.org/t/p/original${el?.profile_path}`
@@ -33,7 +33,26 @@ const Cast = () => {
     </li>
   ));
 
-  return <>{cast && <ul>{castArr}</ul>}</>;
+  return (
+    <>
+      {cast && (
+        <ul
+          style={{
+            listStyle: 'none',
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '25px',
+            padding: 0,
+            marginLeft: '10px',
+          }}
+        >
+          {castArr}
+        </ul>
+      )}
+    </>
+  );
 };
 
 export default Cast;

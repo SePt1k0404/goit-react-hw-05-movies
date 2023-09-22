@@ -1,17 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { StyledLink } from './ItemOfPopularFilms.styled';
 
 const ItemOfPopularFilms = ({ popular, title, id, location }) => {
   return (
     <li>
       {popular ? (
-        <Link to={`movies/${id}`} state={{ from: location }}>
+        <StyledLink to={`movies/${id}`} state={{ from: location }}>
           {title}
-        </Link>
+        </StyledLink>
       ) : (
-        <Link to={`${id}`} state={{ from: location }}>
+        <StyledLink to={`${id}`} state={{ from: location }}>
           {title}
-        </Link>
+        </StyledLink>
       )}
     </li>
   );

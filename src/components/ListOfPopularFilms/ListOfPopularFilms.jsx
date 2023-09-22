@@ -1,5 +1,6 @@
 import ItemOfPopularFilms from 'components/ItemOfPopularFilms/ItemOfPopularFilms';
 import React from 'react';
+import { ListOfFilms } from './ListOfPopularFilms.styled';
 
 const ListOfPopularFilms = ({ popularFilms, popular, location }) => {
   const popularFilmsArr = popularFilms?.map(el => (
@@ -11,7 +12,7 @@ const ListOfPopularFilms = ({ popularFilms, popular, location }) => {
       id={el.id}
     />
   ));
-  return <ul>{popularFilmsArr}</ul>;
+  return <ListOfFilms>{popularFilmsArr}</ListOfFilms>;
 };
 
 export default ListOfPopularFilms;

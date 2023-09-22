@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
+import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { fetchMovie } from 'components/api';
 import { useEffect, useState } from 'react';
 import { StyledLink } from 'components/ItemOfPopularFilms/ItemOfPopularFilms.styled';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Outlet, useLocation } from 'react-router-dom';
+import { useParams, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { fetchMovie } from 'components/api';
 import { useEffect, useState } from 'react';
 import { StyledLink } from 'components/ItemOfPopularFilms/ItemOfPopularFilms.styled';
@@ -13,6 +13,8 @@ const MoviePage = () => {
   const [movie, setMovie] = useState(null);
   const movieId = useParams();
   const location = useLocation();
+  const navigate = useNavigate();
+  console.log(navigate);
   useEffect(() => {
     const getApiInfo = async () => {
       try {
@@ -24,23 +26,18 @@ const MoviePage = () => {
     };
     getApiInfo();
   }, [movieId]);
-  const pathEnding = location.pathname.slice(
-    -location.pathname.split('').reverse().join('').indexOf('/')
-  );
+
   const genres = movie?.genres?.map(el => <li key={el.id}>{el.name}</li>);
+  const handleGoBack = () => {
+    navigate(location?.state?.from ?? '/');
+  };
   return (
     <>
       {movie && (
         <MoviePageWrapper>
-          {pathEnding === 'cast' || pathEnding === 'reviews' ? (
-            <StyledLink to={location.state?.from?.state?.from ?? '/movies'}>
-              Go back
-            </StyledLink>
-          ) : (
-            <StyledLink to={location.state?.from ?? '/movies'}>
-              Go back
-            </StyledLink>
-          )}
+          <button type="button" onClick={handleGoBack}>
+            Go back
+          </button>
           <MovieWrapper>
             <img
               style={{ width: '200px', height: '315px' }}
@@ -65,10 +62,16 @@ const MoviePage = () => {
               marginBottom: '15px',
             }}
           >
-            <StyledLink to="cast" state={{ from: location }}>
+            <StyledLink
+              to="cast"
+              state={{ from: location?.state?.from ?? '/' }}
+            >
               Cast
             </StyledLink>
-            <StyledLink to="reviews" state={{ from: location }}>
+            <StyledLink
+              to="reviews"
+              state={{ from: location?.state?.from ?? '/' }}
+            >
               Reviews
             </StyledLink>
           </div>
